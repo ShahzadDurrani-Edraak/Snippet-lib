@@ -1,0 +1,54 @@
+.snippet-picture {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e3e0e0;
+}
+.snippet-picture img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.snippet-title {
+  margin: 20px 0;
+}
+.snippet-description {
+  margin-bottom: 50px;
+}
+.snippet-preview {
+  width: 100%;
+  padding: 15px 10px;
+  color: rgb(68, 67, 67);
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: lightgrey;
+  position: relative;
+}
+.snippet-preview .snippetTag {
+  right: 0;
+  top: 0;
+}
+.snippetCode {
+  margin-bottom: 30px;
+}
+.code-heeader {
+  background-color: rgb(184 174 167);
+  border-radius: 5px 5px 0 0;
+  padding: 5px 10px;
+  margin-bottom: -7px;
+}
+.code-heeader p {
+  margin-bottom: 0;
+  color: #ffff;
+  line-height: 30px;
+}
+.code-heeader pre {
+  margin-top: 0 !important;
+}
+.code-heeader button {
+  background: transparent;
+  border: none;
+  color: #ffff;
+}
+.code-heeader button span {
+  margin-right: 5px;
+}

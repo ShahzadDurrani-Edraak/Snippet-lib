@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+}
+
+.inner-form {
+  background: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.inner-form .input-field {
+  height: 68px;
+}
+
+.inner-form .input-field input {
+  height: 100%;
+  background: transparent;
+  border: 0;
+  display: block;
+  width: 100%;
+  padding: 10px 32px;
+  font-size: 16px;
+  color: #555;
+}
+
+.inner-form .input-field input.placeholder {
+  color: #888;
+  font-size: 16px;
+}
+
+.inner-form .input-field input:-moz-placeholder {
+  color: #888;
+  font-size: 16px;
+}
+.inner-form .input-field input::-webkit-input-placeholder {
+  color: #888;
+  font-size: 16px;
+}
+
+.inner-form .input-field input:hover,
+.inner-form .input-field input:focus {
+  box-shadow: none;
+  outline: 0;
+  border-color: #fff;
+}
+
+.inner-form .input-field.second-wrap {
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  position: relative;
+}
+.inner-form .input-field.second-wrap span {
+  position: absolute;
+  right: 0;
+  padding: 0 24px;
+  top: 21px;
+  font-size: 18px;
+  color: grey;
+}
+.inner-form .input-field.third-wrap {
+  width: 74px;
+}
+
+.inner-form .input-field.third-wrap .btn-search {
+  height: 100%;
+  width: 100%;
+  white-space: nowrap;
+  color: #454545;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-out, color 0.2s ease-out;
+}
+
+.inner-form .input-field.third-wrap .btn-search:hover {
+  background: #3e64ff;
+  color: #ffff;
+}
+
+.inner-form .input-field.third-wrap .btn-search:focus {
+  outline: 0;
+  box-shadow: none;
+}
+@media screen and (max-width: 992px) {
+  .inner-form .input-field {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .inner-form {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  .inner-form .input-field {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .inner-form .input-field input {
+    padding: 10px 15px;
+  }
+
+  .inner-form .input-field.second-wrap {
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  .inner-form .input-field.second-wrap input {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .inner-form .input-field.third-wrap {
+    margin-bottom: 0;
+    width: 100%;
+  }
+}

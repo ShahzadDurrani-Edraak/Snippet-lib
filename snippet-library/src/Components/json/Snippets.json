@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "image": "/Images/code.jpg",
+    "title": "Snippet Title",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ",
+    "category": "html",
+    "codes": [
+      {
+        "id": 1,
+        "language": "Html",
+        "code": "code Html"
+      },
+      {
+        "id": 2,
+        "language": "Scss",
+        "code": ".snippetCode {\nmargin-bottom: 30px;\n}\n.code-heeader {\nbackground-color: rgb(184 174 167);\nborder-radius: 5px 5px 0 0;\npadding: 5px 10px;\nmargin-bottom: -7px;\n}"
+      },
+      {
+        "id": 3,
+        "language": "JSX",
+        "code": "{copy[code.id] ? (\n<button\nclassName=\"inline-flex items-center gap-1\"\nonClick={() => handleCopy(code.id)}\n>\n<span className=\"fa-regular fa-clipboard\"></span>\ncopy code\n</button>\n) : (\n<button className=\"inline-flex items-center gap-1\">\n<span className=\"fa-solid fa-check\"></span>\ncopied\n</button>\n                  )}"
+      },
+      {
+        "id": 4,
+        "language": "JavaScript",
+        "code": "console.log('hello')"
+      }
+    ]
+  }
+]
