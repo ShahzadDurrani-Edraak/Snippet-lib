@@ -23,61 +23,40 @@ const AddSnippet = ({ onChangeContent }) => {
 
   const [formData, setFormData] = useState({});
   const [codesnippet, setsnippet] = useState([]);
+  var [textareaValue, setText] = useState([]);
+
   const inputRef = useRef(null);
 
   const handleChange = (e) => {
-    console.log("hello");
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const text_area = document.getElementsByClassName(".text_area");
-    const text_area_value = text_area.value;
-    console.log(text_area_value);
+    var arr = [];
+    var textareas = document.querySelectorAll(".text_area");
+    textareas.forEach(function (textarea) {
+      var textareaName = textarea.getAttribute("snippet");
+      var textareaValue = textarea.value;
+      const code_data = {
+        language: textareaName,
+        code: textareaValue,
+      };
+
+      arr.push(code_data);
+    });
+    setFormData({ ...formData, ["code"]: arr });
+    try {
+      await saveData(formData);
+      console.log("Data saved successfully");
+    } catch (error) {
+      // Error saving data
+      console.error(error);
+    }
+
+    console.log(formData);
   };
 
-  function handlesSubmit(event) {
-    const selection = document.getElementById("snippet-language");
-    console.log("hello, world");
-
-    const data = [
-      {
-        id: 1,
-        image: "/Images/code.jpg",
-        title: "Snippet ADD",
-        description: "Lorem ",
-        category: "ADD",
-        codes: [
-          {
-            id: 55,
-            language: "55",
-            code: "code 55",
-          },
-          {
-            id: 55,
-            language: "55",
-            code: "code 55",
-          },
-          {
-            id: 55,
-            language: "55",
-            code: "code 55",
-          },
-          {
-            id: 55,
-            language: "55",
-            code: "code 55",
-          },
-        ],
-      },
-    ];
-  }
-
-  useEffect(() => {
-    const save_button = document.getElementsByClassName("save");
-    window.addEventListener("click", console.log("hello"));
-  });
+  useEffect(() => {});
 
   return (
     <>
@@ -86,7 +65,7 @@ const AddSnippet = ({ onChangeContent }) => {
           <Link to="/" className="btn-back">
             Back to home
           </Link>
-          <form on onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="row mb-3">
               <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
                 Language
@@ -162,19 +141,6 @@ const AddSnippet = ({ onChangeContent }) => {
                     >
                       Add
                     </button>
-                  </div>
-
-                  <div class="textarea-snippet">
-                    <small class="snippetTag">html</small>
-                    <textarea
-                      class="form-control text_area"
-                      id="text_area"
-                      snippet="html"
-                      placeholder="Add snippet here"
-                      name="code"
-                      onChange={(e) => handleChange(e)}
-                    ></textarea>
-                    <button className="save">Save</button>
                   </div>
                 </div>
               </div>

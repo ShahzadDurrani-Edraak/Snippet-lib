@@ -4,9 +4,9 @@ const Sidebar = () => {
   return (
     <nav id="sidebar">
       <h1>
-        <a href="index.html" className="logo" id="logo">
+        <Link to="/" className="logo" id="logo">
           Snippet.
-        </a>
+        </Link>
       </h1>
       <ul className="list-unstyled components mb-5">
         <li className="active">
