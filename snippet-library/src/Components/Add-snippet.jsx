@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import { saveData } from "../api/api";
 import { useEffect, useState, useRef } from "react";
+import { useContext } from "react";
+import { dataContext } from "./Home";
+import axios from "axios";
 
 const AddSnippet = ({ onChangeContent }) => {
+  const [data, setData] = useContext(dataContext);
+  let [idCounter, setCounter] = useState(1);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [btnUpload, setBtnUpload] = useState("");
+
   function handleAdd() {
     const selection = document.getElementById("snippet-language");
     let selection_value = selection.value;
@@ -20,6 +28,35 @@ const AddSnippet = ({ onChangeContent }) => {
       : document.getElementById("snippet-language").focus();
     selection_value = "";
   }
+
+  //image upload
+
+  const onFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const onFileUpload = async () => {
+    try {
+      const imageData = new FormData();
+      imageData.append("image", selectedFile);
+
+      const response = await axios.post(
+        "http://localhost:3001/api/upload",
+        imageData
+      );
+
+      // Set the state with the uploaded file information
+      const uploadedImage = response.data.image;
+      setFormData({ ...formData, image: "/images/" + uploadedImage + ".jpg" });
+      console.log(formData);
+
+      setBtnUpload("sucess");
+      console.log("Image uploaded successfully");
+    } catch (error) {
+      setBtnUpload("error");
+      console.error("Error uploading image:", error);
+    }
+  };
 
   const [formData, setFormData] = useState({});
   const [codesnippet, setsnippet] = useState([]);
@@ -44,7 +81,8 @@ const AddSnippet = ({ onChangeContent }) => {
 
       arr.push(code_data);
     });
-    setFormData({ ...formData, ["code"]: arr });
+    setFormData({ ...formData, ["code"]: arr, ["id"]: idCounter });
+    setCounter((idCounter = idCounter + 1));
     try {
       await saveData(formData);
       console.log("Data saved successfully");
@@ -56,7 +94,7 @@ const AddSnippet = ({ onChangeContent }) => {
     console.log(formData);
   };
 
-  useEffect(() => {});
+  useEffect(() => {}, data);
 
   return (
     <>
@@ -110,6 +148,32 @@ const AddSnippet = ({ onChangeContent }) => {
                   name="description"
                   onChange={handleChange}
                 />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="input-desc" className="col-sm-2 col-form-label">
+                Upload Image
+              </label>
+              <div className="col-sm-10 padding-none">
+                <input type="file" onChange={onFileChange} />
+
+                {btnUpload === "sucess" ? (
+                  <button className="btn btn-success" onClick={onFileUpload}>
+                    Upload
+                  </button>
+                ) : btnUpload === "error" ? (
+                  <button class="btn btn-danger" onClick={onFileUpload}>
+                    Upload
+                  </button>
+                ) : (
+                  <button
+                    className="
+                btn btn-primary"
+                    onClick={onFileUpload}
+                  >
+                    Upload
+                  </button>
+                )}
               </div>
             </div>
 

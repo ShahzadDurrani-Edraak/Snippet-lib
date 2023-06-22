@@ -153,6 +153,7 @@ a {
 }
 .form-check label {
   font-size: 16px;
+  text-transform: uppercase;
 }
 #sidebar ul li > ul {
   margin-left: 10px;

@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar, { filteredData } from "./Sidebar";
 import NavBar from "./Navbar";
 import { Outlet } from "react-router-dom";
 import { fetchData } from "../api/api";
@@ -8,6 +8,7 @@ export const dataContext = createContext("");
 
 const Home = () => {
   const [data, setData] = useState("");
+  const [filteredData, setfilteredData] = useState("");
 
   //Windows height adjustment
   const fullHeight = () => {
@@ -70,14 +71,17 @@ const Home = () => {
   return (
     <>
       <div className="wrapper d-flex align-items-stretch js-fullheight">
-        <Sidebar></Sidebar>
-        {/* Page Content  */}
-        <div id="content" className="p-4 p-md-5 col-md-10">
-          <NavBar></NavBar>
-          <dataContext.Provider value={[data, setData]}>
+        <dataContext.Provider
+          value={[data, setData, filteredData, setfilteredData]}
+        >
+          <Sidebar></Sidebar>
+          {/* Page Content  */}
+          <div id="content" className="p-4 p-md-5 col-md-10">
+            <NavBar></NavBar>
+
             <Outlet />
-          </dataContext.Provider>
-        </div>
+          </div>
+        </dataContext.Provider>
       </div>
     </>
   );
